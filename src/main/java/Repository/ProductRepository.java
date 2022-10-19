@@ -1,3 +1,6 @@
+package Repository;
+
+import Domain.Product;
 
 public class ProductRepository {
     private Product[] product = new Product[0];
@@ -6,7 +9,8 @@ public class ProductRepository {
        return product;
     }
 
-   void saveProduct(Product saveProduct){
+    //Не работает метод
+   public void saveProduct(Product saveProduct){
         int productsLength = product.length + 1;
         Product[] products = new Product[productsLength];
         System.arraycopy(product,0,products,0,productsLength);

@@ -1,9 +1,12 @@
+package Domain;
+
+import Domain.Product;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Smartphone extends Product{
+public class Smartphone extends Product {
     String manufacturer;
 
     public Smartphone(){

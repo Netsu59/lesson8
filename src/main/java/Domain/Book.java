@@ -1,9 +1,11 @@
+package Domain;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Book extends Product{
+public class Book extends Product {
     String author;
 
     public Book(String author,String name, int price){

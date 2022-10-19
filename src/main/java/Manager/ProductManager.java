@@ -1,16 +1,25 @@
+package Manager;
+import Domain.Product;
+import Domain.Book;
+import Domain.Smartphone;
+import Repository.ProductRepository;
+
 
 public class ProductManager {
     private Product[] products = new Product[0];
 
-    private Product[] sortedProducts = new Product[0];
+    ProductManager (ProductRepository repository){
+        this.repository = repository;
 
-    private  ProductRepository repository;
+    }
+
+    private ProductRepository repository;
 
         public Product[] searchBy(String text) {
-        Product[] products1 = repository.getAll();
+        Product[] repositoryProducts = repository.getAll();
         Product[] products = new Product[0];
         int elements = 0;
-        for (Product product : products1) {
+        for (Product product : repositoryProducts) {
                 if (matchesBy(product, text)) {
                     Product[]tmp = new Product[products.length + 1];
                     System.arraycopy(products, 0, tmp, 0, elements);
@@ -22,7 +31,7 @@ public class ProductManager {
             return products;
     }
 
-    public boolean matchesBy(Product product,String search) {
+    public boolean matchesBy(Product product, String search) {
         if (product instanceof Book) {
             Book book = (Book) product;
             if (book.getAuthor().contains(search)) {
@@ -47,14 +56,7 @@ public class ProductManager {
     }
 
     public void add(Product product){
-        int productsLength = products.length + 1;
-        Product[] products1 = new Product [productsLength];
-        for(int i = 0; i < products.length; i++){
-            products1[i] = products[i];
-        }
-        int lastIndex = products1.length-1;
-        products1[lastIndex] = product;
-        products = products1;
+        repository.saveProduct(product);
     }
 
 }
