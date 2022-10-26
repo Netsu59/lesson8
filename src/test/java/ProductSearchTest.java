@@ -18,7 +18,7 @@ public class ProductSearchTest {
     @Mock
     private ProductRepository productRepository;
     @InjectMocks
-    private ProductManager productManager;
+    private ProductManager productManager = new ProductManager(productRepository);
 
     private Book book1 = new Book("Google","Как тестирует в Google",300);
     private Book book2 = new Book("Matt Gypps","Pixel perfect precision",200);
@@ -28,13 +28,11 @@ public class ProductSearchTest {
 
     //Исправить тест
     @Test void shouldAddItems(){
-        Product book = new Book("Сомерсэт Моэм","Луна и грош",400);
-
         Product[] returned = new Product[]{book1,book2,smartphone1,smartphone2};
         doReturn(returned).when(productRepository).getAll();
 
+        Product book = new Book("Сомерсэт Моэм","Луна и грош",400);
         productManager.add(book);
-
 
         Product[] expected = new Product[]{book};
         Product[] actual = productManager.searchBy("Луна и грош");

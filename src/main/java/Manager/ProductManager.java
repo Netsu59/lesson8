@@ -8,14 +8,13 @@ import Repository.ProductRepository;
 public class ProductManager {
     private Product[] products = new Product[0];
 
-    ProductManager (ProductRepository repository){
+    public ProductManager(ProductRepository repository){
         this.repository = repository;
-
     }
 
     private ProductRepository repository;
 
-        public Product[] searchBy(String text) {
+    public Product[] searchBy(String text) {
         Product[] repositoryProducts = repository.getAll();
         Product[] products = new Product[0];
         int elements = 0;
@@ -58,5 +57,4 @@ public class ProductManager {
     public void add(Product product){
         repository.saveProduct(product);
     }
-
-}
+    }

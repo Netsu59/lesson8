@@ -11,10 +11,10 @@ public class ProductRepository {
 
     //Не работает метод
    public void saveProduct(Product saveProduct){
-        int productsLength = product.length + 1;
-        Product[] products = new Product[productsLength];
-        System.arraycopy(product,0,products,0,productsLength);
-        int lastIndex = productsLength - 1;
+        int length = product.length + 1;
+        Product[] products = new Product[length];
+        System.arraycopy(product,0,products,0,product.length);
+        int lastIndex = products.length - 1;
         products[lastIndex] = saveProduct;
         product = products;
     }
